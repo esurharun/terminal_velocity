@@ -11,34 +11,23 @@ For screenshots and features, see the
 
 To install Terminal Velocity, run::
 
-    pip install terminal_velocity
+    python setup.py install
 
 Then to launch it just run::
 
-    terminal_velocity
+    tv
 
 To use a different notes directory, run::
 
-    terminal_velocity path/to/your/notes/dir
+    tv path/to/your/notes/dir
 
 To see all the command-line options, run::
 
-    terminal_velocity -h
+    tv -h
 
 To quit the app, press ``ctrl-c`` or ``ctrl-x``.
 
-To upgrade Terminal Velocity to the latest version, run::
 
-    pip install --upgrade terminal_velocity
 
-To uninstall it, run::
-
-    pip uninstall terminal_velocity
-
-To make a bug report or feature request, use `GitHub Issues <https://github.com/seanh/terminal_velocity/issues>`_.
-
-To contribute documentation, use `the wiki <https://github.com/seanh/terminal_velocity/wiki>`_.
-
-To contribute code to Terminal Velocity, see
-`CONTRIBUTING <https://github.com/seanh/terminal_velocity/blob/master/CONTRIBUTING.md#contributing-to-terminal-velocity>`_.
+To make a bug report or feature request, use `GitHub Issues <https://github.com/esurharun/terminal_velocity/issues>`_.
 
