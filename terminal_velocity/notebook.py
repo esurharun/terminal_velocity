@@ -217,7 +217,10 @@ class PlainTextNote(object):
 
     @property
     def contents(self):
-        contents = unicode_or_bust(open(self.abspath, "r").read())
+        try:
+            contents = unicode_or_bust(open(self.abspath, "r").read())
+        except IOError as e:
+            return u"" 
         if contents is None:
             logger.error(
                 u"Could not decode file contents: {0}".format(self.abspath))

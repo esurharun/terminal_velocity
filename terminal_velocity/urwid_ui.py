@@ -10,7 +10,7 @@ logger = logging.getLogger(__name__)
 import urwid
 
 import notebook
-
+import uiextensions
 
 palette = [
     ("placeholder", "dark blue", "default"),
@@ -238,6 +238,7 @@ class NoteFilterListBox(urwid.ListBox):
 class MainFrame(urwid.Frame):
     """The topmost urwid widget."""
 
+
     def __init__(self, notes_dir, editor, extension, extensions):
 
         self.editor = editor
@@ -313,7 +314,7 @@ class MainFrame(urwid.Frame):
         self.suppress_filter = False
         self.suppress_focus = False
 
-        if key in ["esc", "ctrl d"]:
+        if key in ["esc"]:
             if self.selected_note:
                 # Clear the selected note.
                 self.selected_note = None
@@ -321,6 +322,16 @@ class MainFrame(urwid.Frame):
             elif self.search_box.edit_text:
                 self.search_box.set_edit_text("")
                 return None
+	elif key in ["ctrl d"]:
+            if self.selected_note:
+	       d = uiextensions.DialogDisplay(u"Delete "+self.selected_note.abspath+u" ?", 8, 40, palette)
+	       d.add_buttons([ ("Yes",0), ("No", 1) ])
+	       exitcode, exitstring = d.main()	    
+
+               if exitcode == 0: 
+                    system("rm", [self.selected_note.abspath],self.loop)
+                    self.notebook = notebook.PlainTextNoteBook(self.notebook._path, self.notebook.extension, self.notebook.extensions)
+            self.filter(self.search_box.edit_text)
 
         elif key in ["enter"]:
             if self.selected_note:
